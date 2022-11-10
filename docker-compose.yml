@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: ./
+      target: dev
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/src/app
+    command: npm run watch-node
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      DEBUG: nodejs-docker-express:*
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: dev
+      DB_PASSWORD: postgres
+      DB_NAME: example
+    links:
+      - db
+  db:
+    image: postgres:15.0-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=example
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    env_file:
+      - .env
+volumes:
+  db:
+    driver: local
