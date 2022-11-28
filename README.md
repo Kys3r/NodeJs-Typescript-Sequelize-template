@@ -20,6 +20,8 @@ cd <project_name>
 npm install
 ```
 
+- Mount docker image and docker-compose up
+
 - Build and run the project
 
 ```
