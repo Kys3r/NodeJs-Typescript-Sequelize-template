@@ -10,14 +10,14 @@
       "username": "dev",
       "password": "postgres",
       "database": "exemple_db",
-      "host": "your_local_ip",
+      "host": "your_test_ip",
       "dialect": "postgres"
     },
     "production": {
       "username": "dev",
       "password": "postgres",
       "database": "exemple_db",
-      "host": "your_local_ip",
+      "host": "your_remote_ip",
       "dialect": "postgres"
     }
 }
